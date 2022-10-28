@@ -7,7 +7,9 @@ const validationMiddleware = require("../middlewares/validationMiddleware");
 const { FILE_DIR } = require("../constants");
 const heroes = require("../controllers");
 
-router.get("/download", express.static(FILE_DIR));
+router.use("/download", express.static(FILE_DIR));
+
+router.get("/count", heroes.getCount);
 
 router.get("/", heroes.getHeroesList);
 router.get("/:heroId", heroes.getHeroById);

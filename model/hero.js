@@ -26,17 +26,18 @@ const joiSchema = Joi.object().keys({
   nickname: Joi.string().min(3).max(30).required(),
   real_name: Joi.string().required(),
   origin_description: Joi.string().required(),
-  superpowers: Joi.array().required(),
+  superpowers: Joi.array().required().items(Joi.string().min(1)),
   catch_phrase: Joi.string().required(),
+  images: Joi.array(),
 });
 
 const updatedJoiSchema = Joi.object().keys({
   nickname: Joi.string().min(3).max(30).required(),
-  real_name: Joi.string().required(),
+  real_name: Joi.string().min(3).max(30).required(),
   origin_description: Joi.string().required(),
-  superpowers: Joi.array().required(),
+  superpowers: Joi.array().required().items(Joi.string().min(1)),
   catch_phrase: Joi.string().required(),
-  deletedImages: Joi.array().items(Joi.string().min(1)),
+  deletedImages: Joi.array(),
 });
 
 const Superhero = model("superhero", superheroSchema);
